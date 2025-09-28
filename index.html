@@ -4,8 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AIgnite 2025 - AI Workshop & Training</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    * { 
+      margin:0; 
+      padding:0; 
+      box-sizing:border-box; 
+      font-family: 'Poppins', sans-serif; 
+    }
     body {
       color: #333;
       background: linear-gradient(-45deg, #e3f2fd, #ffffff, #e1f5fe, #f0f9ff);
@@ -15,136 +24,177 @@
       flex-direction:column;
       min-block-size:100vh;
     }
-    @keyframes gradientBG { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes gradientBG { 
+      0%{background-position:0% 50%} 
+      50%{background-position:100% 50%} 
+      100%{background-position:0% 50%} 
+    }
 
-    /* Header */
-    header { text-align:center; padding:40px 20px; background:#0a1f44; color:#fff; border-block-end:4px solid #1976d2; }
+    /* Header with Background Slideshow */
+    header {
+      text-align:center;
+      padding:60px 20px;
+      color:#fff;
+      border-block-end:4px solid #1976d2;
+      position:relative;
+      overflow:hidden;
+    }
+    header::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.55);
+      z-index:1;
+    }
+    .header-bg {
+      position:absolute;
+      inset:0;
+      background-size:cover;
+      background-position:center;
+      animation:slideShow 18s infinite;
+      z-index:0;
+    }
+    @keyframes slideShow {
+      0% { background-image:url("5.jpg"); }
+      33% { background-image:url("2 (2).jpg"); }
+      66% { background-image:url("4.jpg"); }
+      100% { background-image:url("5.jpg"); }
+    }
+    header img, header h1, header p {
+      position:relative;
+      z-index:2;
+    }
     header img { inline-size:60%; max-inline-size:400px; block-size:auto; display:block; margin:0 auto 20px; }
-    header h1 { font-size:2.5rem; font-weight:700; margin-block-end:10px; }
-    header p { font-size:1.1rem; }
+    header h1 { 
+      font-family:'Montserrat', sans-serif; 
+      font-size:2.8rem; 
+      font-weight:700; 
+      margin-block-end:10px; 
+      text-shadow:2px 2px 8px rgba(0,0,0,0.6); 
+      letter-spacing:1px;
+    }
+    header p { 
+      font-family:'Poppins', sans-serif; 
+      font-size:1.2rem; 
+      font-weight:500; 
+      text-shadow:1px 1px 6px rgba(0,0,0,0.6); 
+    }
 
     .container { flex:1; padding:30px; max-inline-size:1200px; margin:auto; }
 
     .section {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       border-radius:15px;
       padding:25px;
       margin-block-end:30px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.1);
+      box-shadow:0 6px 18px rgba(0,0,0,0.15);
       backdrop-filter: blur(5px);
+      position:relative;
     }
-    .section h2 { color:#1976d2; margin-block-end:15px; font-size:1.8rem; }
-    .agenda-item { margin:10px 0; padding:10px; background:#f9f9f9; border-inline-start:4px solid #2196f3; border-radius:8px; }
-    .speakers { display:flex; flex-wrap:wrap; gap:20px; }
-    .speaker-card { flex:1 1 250px; background:#f9f9f9; padding:15px; border-radius:12px; border-inline-start:4px solid #1976d2; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+    .section::before {
+      content:"✨";
+      position:absolute;
+      font-size:2rem;
+      inset-inline-start:-15px;
+      inset-block-start:-15px;
+      color:#1976d2;
+    }
+    .section h2 { 
+      color:#1976d2; 
+      margin-block-end:15px; 
+      font-size:1.9rem; 
+      font-family:'Montserrat', sans-serif; 
+      font-weight:600; 
+    }
+    .agenda-item { 
+      margin:10px 0; 
+      padding:10px; 
+      background:#f9f9f9; 
+      border-inline-start:4px solid #2196f3; 
+      border-radius:8px; 
+      font-family:'Poppins', sans-serif;
+    }
 
-    /* --- Registration Form Styling --- */
+    .speakers { display:flex; flex-wrap:wrap; gap:20px; }
+    .speaker-card {
+      flex:1 1 250px; background:#f9f9f9;
+      padding:15px; border-radius:12px;
+      border-inline-start:4px solid #1976d2;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      font-family:'Poppins', sans-serif;
+    }
+    .speaker-card h3 { font-family:'Montserrat', sans-serif; font-weight:600; margin-bottom:8px; }
+    .speaker-card:hover { transform:translateY(-8px) scale(1.03); }
+
+    /* Registration Form */
     .section.form-section { background:#0a1f44; color:#fff; }
-    .section.form-section h2 { color:#fff; text-align:center; }
+    .section.form-section h2 { 
+      color:#fff; 
+      text-align:center; 
+      font-family:'Montserrat', sans-serif;
+    }
 
     .section.form-section form {
-      display:flex;
-      flex-direction:column;
-      gap:20px;
-      inline-size:100%;
-      align-items:stretch;
+      display:flex; flex-direction:column; gap:20px;
+      inline-size:100%; align-items:stretch;
     }
-
-    .form-row {
-      display:flex;
-      gap:20px;
-      inline-size:100%;
-    }
-
-    .form-row .form-group {
-      flex:1;
-      min-inline-size:0;
-      display:flex;
-      flex-direction:column;
-    }
-
-    .form-group {
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      inline-size:100%;
-    }
-
-    .form-group label {
-      font-weight:600;
-      color:#fff;
-      font-size:0.95rem;
-    }
-
+    .form-row { display:flex; gap:20px; inline-size:100%; }
+    .form-row .form-group { flex:1; display:flex; flex-direction:column; }
+    .form-group label { font-weight:600; color:#fff; font-size:0.95rem; font-family:'Poppins', sans-serif; }
     input, select, textarea {
-      inline-size:100%;
-      padding:12px;
-      border-radius:8px;
-      border: none;
-      font-size:1rem;
-      background:#f0f4fa;
-      color:#333;
-      transition: all 0.18s ease;
-      box-sizing:border-box;
+      inline-size:100%; padding:12px; border-radius:8px; border:none;
+      font-size:1rem; background:#f0f4fa; color:#333; transition: all 0.18s ease;
+      font-family:'Poppins', sans-serif;
     }
-
     input:focus, select:focus, textarea:focus {
-      outline:none;
-      box-shadow:0 0 0 3px rgba(25,118,210,0.12);
-      border-radius:8px;
+      outline:none; box-shadow:0 0 0 3px rgba(25,118,210,0.3);
       background:#fff;
     }
-
     textarea { resize:vertical; min-block-size:110px; }
 
     button {
-      padding:14px;
-      border:none;
-      border-radius:10px;
-      background:#1976d2;
-      color:#fff;
-      font-size:1.05rem;
-      cursor:pointer;
-      inline-size:100%;
-      align-self:stretch;
+      padding:14px; border:none; border-radius:10px;
+      background:#1976d2; color:#fff; font-size:1.05rem;
+      cursor:pointer; inline-size:100%; transition:0.3s;
+      font-family:'Montserrat', sans-serif; font-weight:600;
     }
-    button:hover { background:#0a1f44; }
-
-    .success {
-      display:none;
-      margin-block-start:10px;
-      text-align:center;
-      color:#6ee07b;
-      font-weight:700;
-    }
+    button:hover { background:#0a1f44; transform:scale(1.05); }
+    .success { display:none; margin-block-start:10px; text-align:center; color:#6ee07b; font-weight:700; }
 
     footer {
-      background: rgba(33,150,243,0.9);
-      color:white;
-      text-align:center;
-      padding:20px 10px;
-      margin-block-start:auto;
+      background: rgba(33,150,243,0.9); color:white;
+      text-align:center; padding:20px 10px; margin-block-start:auto;
       border-block-start:4px solid #1976d2;
+      font-family:'Poppins', sans-serif;
     }
     footer a { color:#ffeb3b; text-decoration:none; font-weight:700; }
     footer a:hover { text-decoration:underline; }
 
-    /* Floating circles */
-    .circle { position:fixed; border-radius:50%; opacity:0.3; animation:float 10s infinite ease-in-out; z-index:-1; }
+    /* Floating decorative circles */
+    .circle { position:fixed; border-radius:50%; opacity:0.25; animation:float 10s infinite ease-in-out; z-index:-1; }
     .circle.one { inline-size:200px; block-size:200px; background:#90caf9; inset-block-start:10%; inset-inline-start:5%; }
     .circle.two { inline-size:150px; block-size:150px; background:#bbdefb; inset-block-end:15%; inset-inline-end:10%; }
     @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-30px)} }
 
-    @media (max-inline-size: 768px) { header h1 { font-size:2rem; } header p { font-size:1rem; } .form-row { flex-direction:column; } }
-    @media (max-inline-size:480px) { header img { inline-size:80%; max-inline-size:280px; } header h1 { font-size:1.8rem; } header p { font-size:0.95rem; } }
+    @media (max-inline-size: 768px) {
+      header h1 { font-size:2.2rem; }
+      header p { font-size:1rem; }
+      .form-row { flex-direction:column; }
+    }
+    @media (max-inline-size:480px) {
+      header img { inline-size:80%; max-inline-size:280px; }
+      header h1 { font-size:1.8rem; }
+      header p { font-size:0.95rem; }
+    }
   </style>
 </head>
 <body>
-
   <div class="circle one"></div>
   <div class="circle two"></div>
 
   <header>
+    <div class="header-bg"></div>
     <img src="logo.png" alt="AIgnite Logo">
     <h1>AIgnite 2025</h1>
     <p>🔥 Welcome to AIgnite – AI Workshop & Training</p>
